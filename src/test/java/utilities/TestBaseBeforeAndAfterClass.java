@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public abstract class TestBaseBeforeAndAfterClass {
-
+//!!!!TESTNG de satic olmasa da calisir @BeforClass and @AfterClass!!!! JUnit te bu gerekliydi
     protected static WebDriver driver;
     protected static String tarih;//screenShoot a kullanmak icn bunu yaptik.
 

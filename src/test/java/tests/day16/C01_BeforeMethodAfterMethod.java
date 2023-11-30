@@ -5,9 +5,9 @@ import org.testng.annotations.Test;
 import utilities.TestBaseBeforMethodAndAfterMethod;
 import utilities.TestBaseBeforeAndAfterClass;
 
-public class C01_BeforeMethodAfterMethod  extends TestBaseBeforeAndAfterClass{
+public class C01_BeforeMethodAfterMethod extends TestBaseBeforeAndAfterClass {
     @Test
-    public void amazonTest(){
+    public void amazonTest() {
         driver.get("https://amazon.com");
 
 
@@ -17,6 +17,7 @@ public class C01_BeforeMethodAfterMethod  extends TestBaseBeforeAndAfterClass{
     public void bestBuyTest() {
         driver.get("https://bebstbuy.com");
     }
+
     @Test
     public void zalondaTets() {
         driver.get("https://www.zalando.com");
