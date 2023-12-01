@@ -5,42 +5,50 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import utilities.TestBaseBeforeAndAfterClass;
 
-public class C03_SoftAssertions extends TestBaseBeforeAndAfterClass {
+public class C04_SoftAssertionPractice extends TestBaseBeforeAndAfterClass {
+
 
     @Test
     public void test1() {
+        /*
+             SoftAssert baslangig ve bitis satirlar arasindaki tüm assertion'lari yapI
+             bitis olarak belirtmemiz gereken assertAll() metoduyla test metodumuzdaki bütün assertion Lara
+             kontrol eder. Failed olon olursa assertion yaptigimiz metodun sonuna yazdigimiz mesaja bize konsolda verir
+         */
+        SoftAssert softAssert = new SoftAssert();
         //1-omazon anasayfaya gidin
         driver.get("https://amazon.com");
         //2-title in Amazon icerdigini test edin
 
         String actualTitel = driver.getTitle();
         String expectedTitel = "Amazon";
-        Assert.assertTrue(actualTitel.contains(expectedTitel));
+
+        softAssert.assertTrue(actualTitel.contains(expectedTitel),"Girdiginiz msj icermiyor");
+        //-->hata gelirse message consola yazdirilir
         //3-arama kutusnun erisilebilir oldugunu tets edin
 
         WebElement searcBox = driver.findElement(By.xpath("//input[@id='twotabsearchtextbox']"));
-        Assert.assertTrue(searcBox.isEnabled());
+        softAssert.assertTrue(searcBox.isEnabled(),"WE erisilmedi");
         //4-arama kutusuna Nuella yazip aratin
 
         searcBox.sendKeys("Nutella", Keys.ENTER);
         //5-arama yapildigina test edin
         WebElement aramaSonucu = driver.
                 findElement(By.xpath("//div[@class='a-section a-spacing-small a-spacing-top-small']"));
-        Assert.assertTrue(aramaSonucu.isDisplayed());
+        softAssert.assertTrue(aramaSonucu.isDisplayed(),"sonuc WE Görüntülenemedi");
 
         //6-arama sonucunun Nutella icerdigini test edin
         String aramaSonuuText = driver.getTitle();
         String expectetSonuc = "Nutella";
-        Assert.assertTrue(aramaSonuuText.contains(expectetSonuc));
+        softAssert.assertTrue(aramaSonuuText.contains(expectetSonuc),"Nutella icermedi");
+        softAssert.assertAll();
+        System.out.println("Hata varsa burasi calismaz");
+
 
     }
-
-
-//6-arama sonucunun Nutella icerdigini test edin
-
-
 }
 
 
@@ -63,3 +71,8 @@ Test method'unun istedigimiz bolumde yapilan tum testleri raporlar
 Eger assertion'lardan FAILED olan varsa raporlama yapilan satirdan sonrasini calistirmaz.
 SoftAssert class'indaki method'lari kullanmak icin kullanabilmemiz için object olusturmamiz gerekir.
      */
+
+
+
+
+
